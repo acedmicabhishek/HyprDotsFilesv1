@@ -9,7 +9,7 @@ echo "Welcome to the Acerice Installer!"
 echo "[*] Updating system and installing dependencies..."
 if command -v pacman &> /dev/null; then
     sudo pacman -Syu --noconfirm
-    sudo pacman -S --noconfirm hyprland wofi waybar kitty grim slurp swappy thunar network-manager-applet ttf-jetbrains-mono-nerd swayosd brightnessctl wireplumber libnotify otf-font-awesome zsh fish
+    sudo pacman -S --noconfirm hyprland wofi waybar kitty grim slurp swappy thunar network-manager-applet ttf-jetbrains-mono-nerd swayosd brightnessctl wireplumber libnotify otf-font-awesome zsh fish python-gobject
 else
     echo "[!] pacman not found. Please install dependencies manually."
 fi
@@ -110,6 +110,12 @@ if [ -d "$SCRIPT_DIR/kitty" ]; then
     echo "    Installed Kitty config."
 fi
 
+if [ -d "$SCRIPT_DIR/kerneldrive" ]; then
+    mkdir -p "$HOME/.config/kerneldrive"
+    cp -r "$SCRIPT_DIR/kerneldrive/"* "$HOME/.config/kerneldrive/"
+    echo "    Installed KernelDrive config."
+fi
+
 # Fix Wofi CSS import path for the new user (CSS doesn't support ~ or $HOME)
 if [ -f "$HOME/.config/wofi/style.css" ]; then
     sed -i "s|@import.*;|@import \"$HOME/.config/wofi/colors.css\";|g" "$HOME/.config/wofi/style.css"
@@ -117,6 +123,6 @@ if [ -f "$HOME/.config/wofi/style.css" ]; then
 fi
 
 # 4. Make scripts executable
-chmod +x "$HOME/.config/hypr/scripts/"*.sh 2>/dev/null
+chmod +x "$HOME/.config/hypr/scripts/"* 2>/dev/null
 
 echo "Installation complete! Please restart Hyprland."

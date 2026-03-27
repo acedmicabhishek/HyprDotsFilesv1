@@ -1,7 +1,51 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 40,
-    "passthrough": false, 
-    "modules-center": ["clock"]
+    "margin-top": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "spacing": 5,
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["custom/asus", "custom/temp", "custom/bat", "memory", "cpu"],
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}",
+        "on-click": "activate"
+    },
+
+    "clock": {
+        "format": " {:%H:%M  󰃭 %d/%m}",
+        "interval": 60,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "custom/asus": {
+        "format": "{}",
+        "interval": 2,
+        "exec": "~/.config/hypr/scripts/sys_data.sh mode"
+    },
+
+    "custom/temp": {
+        "format": "{}",
+        "interval": 2,
+        "exec": "~/.config/hypr/scripts/sys_data.sh temp"
+    },
+
+    "custom/bat": {
+        "format": "{}",
+        "interval": 2,
+        "exec": "~/.config/hypr/scripts/sys_data.sh bat"
+    },
+
+    "memory": {
+        "format": "󰍛 {}%"
+    },
+
+    "cpu": {
+        "format": "󰻠 {usage}%"
+    }
 }

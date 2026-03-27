@@ -1,0 +1,80 @@
+/* --- Ace Bar Enhanced Design --- */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Inter", sans-serif;
+    outline: none;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+}
+
+window {
+    background: transparent;
+}
+
+.bar-container {
+    background: rgba(17, 17, 27, 0.8); /* 80% Opacity */
+    padding: 2px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 1;
+}
+
+.bar-container.hidden-bar {
+    opacity: 0;
+    margin-top: -40px; /* Slide out of view for good measure */
+}
+
+.island {
+    background: transparent; /* Container handles opacity now */
+    padding: 4px 12px;
+    margin: 2px;
+    min-height: 24px;
+}
+
+/* --- Left: Workspaces --- */
+.left {
+    padding: 0 6px;
+}
+
+.ws-btn {
+    background: transparent;
+    border: none;
+    color: #585b70;
+    font-weight: 800;
+    margin: 2px 3px;
+    min-height: 16px;
+    min-width: 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.ws-btn.active {
+    background: #cba6f7;
+    color: #11111b;
+    min-width: 24px;
+    border-radius: 6px;
+}
+
+.ws-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Center: Clock --- */
+.center {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+/* --- Right: Modules --- */
+.mod-net   { color: #89dceb; margin-left: 10px; }
+.mod-power { color: #f9e2af; margin-left: 10px; font-weight: bold; }
+.mod-temp  { color: #eba0ac; margin-left: 10px; }
+.mod-bat   { color: #a6e3a1; margin-left: 10px; }
+
+.mod-power:hover {
+    color: #ffffff;
+    background: rgba(249, 226, 175, 0.2);
+    border-radius: 4px;
+}
