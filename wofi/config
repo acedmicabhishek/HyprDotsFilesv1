@@ -1,0 +1,10 @@
+# Center the launcher and set a modern size
+width=450
+height=400
+location=center
+show=drun
+prompt=Search Apps...
+filter_rate=100
+allow_images=true
+# This makes it look cleaner by hiding the scrollbar
+hide_scroll=true

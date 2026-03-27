@@ -1,0 +1,45 @@
+@import "/home/light/.config/wofi/colors.css";
+
+/* Glass-morphism style */
+window {
+    margin: 0px;
+    border: 2px solid @accent;
+    background-color: @bg_color;
+    
+    /* Dark translucent */
+    border-radius: 16px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 14px;
+}
+
+#input {
+    margin: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(49, 50, 68, 0.5);
+    color: #cdd6f4;
+}
+
+#entry:selected {
+    background-color: @accent;
+    border-radius: 10px;
+}
+
+#text {
+    margin: 5px;
+    color: #cdd6f4;
+}
+
+/* Styling for the power menu specifically */
+#entry {
+    padding: 20px;
+    font-size: 20px;
+    /* Make icons/text bigger for the power menu */
+}
+
+#entry:selected {
+    background-color: @accent;
+    /* Your ImageMagick synced color */
+    border-radius: 15px;
+}

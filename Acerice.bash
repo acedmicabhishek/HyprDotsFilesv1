@@ -9,7 +9,7 @@ echo "Welcome to the Acerice Installer!"
 echo "[*] Updating system and installing dependencies..."
 if command -v pacman &> /dev/null; then
     sudo pacman -Syu --noconfirm
-    sudo pacman -S --noconfirm hyprland wofi kitty grim slurp swappy thunar network-manager-applet ttf-jetbrains-mono-nerd swayosd brightnessctl wireplumber libnotify
+    sudo pacman -S --noconfirm hyprland wofi waybar kitty grim slurp swappy thunar network-manager-applet ttf-jetbrains-mono-nerd swayosd brightnessctl wireplumber libnotify otf-font-awesome zsh fish
 else
     echo "[!] pacman not found. Please install dependencies manually."
 fi
@@ -76,6 +76,38 @@ elif [ -d "$SCRIPT_DIR/wofi" ]; then
     echo "    Installed Wofi config (from subdirectory)."
 else 
     echo "[!] Could not find wofi config folder. Please copy ~/.config/wofi manually."
+fi
+
+# Copy Waybar config
+if [ -d "$SCRIPT_DIR/../waybar" ]; then
+    mkdir -p "$HOME/.config/waybar"
+    cp -r "$SCRIPT_DIR/../waybar/"* "$HOME/.config/waybar/"
+    echo "    Installed Waybar config."
+elif [ -d "$SCRIPT_DIR/waybar" ]; then
+    mkdir -p "$HOME/.config/waybar"
+    cp -r "$SCRIPT_DIR/waybar/"* "$HOME/.config/waybar/"
+    echo "    Installed Waybar config (from subdirectory)."
+else 
+    echo "[!] Could not find waybar config folder. Please copy ~/.config/waybar manually."
+fi
+
+# Copy Shell configs
+if [ -d "$SCRIPT_DIR/zsh" ]; then
+    cp "$SCRIPT_DIR/zsh/zshrc" "$HOME/.zshrc"
+    cp "$SCRIPT_DIR/zsh/p10k.zsh" "$HOME/.p10k.zsh"
+    echo "    Installed Zsh config (p10k)."
+fi
+
+if [ -d "$SCRIPT_DIR/fish" ]; then
+    mkdir -p "$HOME/.config/fish"
+    cp -r "$SCRIPT_DIR/fish/"* "$HOME/.config/fish/"
+    echo "    Installed Fish config."
+fi
+
+if [ -d "$SCRIPT_DIR/kitty" ]; then
+    mkdir -p "$HOME/.config/kitty"
+    cp -r "$SCRIPT_DIR/kitty/"* "$HOME/.config/kitty/"
+    echo "    Installed Kitty config."
 fi
 
 # Fix Wofi CSS import path for the new user (CSS doesn't support ~ or $HOME)
