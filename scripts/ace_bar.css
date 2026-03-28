@@ -13,7 +13,8 @@ window {
 }
 
 .bar-container {
-    background: rgba(17, 17, 27, 0.8); /* 80% Opacity */
+    background: rgba(17, 17, 27, 0.8);
+    /* 80% Opacity */
     padding: 2px 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -22,11 +23,13 @@ window {
 
 .bar-container.hidden-bar {
     opacity: 0;
-    margin-top: -40px; /* Slide out of view for good measure */
+    margin-top: -40px;
+    /* Slide out of view for good measure */
 }
 
 .island {
-    background: transparent; /* Container handles opacity now */
+    background: transparent;
+    /* Container handles opacity now */
     padding: 4px 12px;
     margin: 2px;
     min-height: 24px;
@@ -67,14 +70,181 @@ window {
     font-weight: 800;
 }
 
-/* --- Right: Modules --- */
-.mod-net   { color: #89dceb; margin-left: 10px; }
-.mod-power { color: #f9e2af; margin-left: 10px; font-weight: bold; }
-.mod-temp  { color: #eba0ac; margin-left: 10px; }
-.mod-bat   { color: #a6e3a1; margin-left: 10px; }
+.window-title {
+    color: #cba6f7;
+    /* Mauve */
+    font-weight: bold;
+    font-size: 14px;
+}
 
-.mod-power:hover {
+.media-text {
+    color: #94e2d5;
+    /* Teal */
+    font-size: 12px;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+/* --- Right: Modules --- */
+.mod-net {
+    color: #89b4fa;
+    margin-left: 10px;
+}
+
+/* Blue */
+.mod-power {
+    color: #fab387;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+/* Peach */
+.mod-gpu {
+    color: #a6e3a1;
+    margin-left: 10px;
+}
+
+/* Green */
+.mod-vol {
+    color: #f9e2af;
+    margin-left: 10px;
+}
+
+/* Yellow */
+.mod-bright {
+    color: #f9e2af;
+    margin-left: 10px;
+}
+
+/* Yellow */
+.mod-cpu {
+    color: #74c7ec;
+    margin-left: 10px;
+}
+
+/* Sapphire */
+.mod-mem {
+    color: #cba6f7;
+    margin-left: 10px;
+}
+
+/* Mauve */
+.mod-temp {
+    color: #f38ba8;
+    margin-left: 10px;
+}
+
+/* Red */
+.mod-bat {
+    color: #a6e3a1;
+    margin-left: 10px;
+}
+
+/* Green */
+
+.mod-gpu:hover,
+.mod-vol:hover,
+.mod-power:hover,
+.mod-bright:hover,
+.media-text:hover {
     color: #ffffff;
-    background: rgba(249, 226, 175, 0.2);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
+}
+
+/* --- Drawers --- */
+
+.drawer-window {
+    background: rgba(17, 17, 27, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.drawer-container {
+    padding: 20px;
+    min-width: 250px;
+}
+
+.drawer-big-clock {
+    font-size: 48px;
+    font-weight: 900;
+    color: #cba6f7;
+    /* Mauve */
+    margin-bottom: -5px;
+}
+
+.drawer-date {
+    font-size: 16px;
+    color: #94e2d5;
+    /* Teal */
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.drawer-weather {
+    font-size: 15px;
+    color: #f9e2af;
+    /* Yellow */
+    margin-bottom: 5px;
+}
+
+.drawer-title-large {
+    font-size: 14px;
+    color: #89b4fa;
+    /* Blue */
+    font-weight: 500;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.drawer-section-title {
+    font-size: 11px;
+    color: #585b70;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.drawer-stat-detail {
+    font-size: 12px;
+    color: #a6e3a1;
+    /* Green */
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+progressbar trough {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    min-height: 8px;
+}
+
+.drawer-cpu-bar progress {
+    background: linear-gradient(to right, #89b4fa, #cba6f7);
+    border-radius: 4px;
+}
+
+.drawer-ram-bar progress {
+    background: linear-gradient(to right, #a6e3a1, #94e2d5);
+    border-radius: 4px;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.8;
+    }
+}
+
+.drawer-big-clock {
+    animation: pulse 4s infinite ease-in-out;
 }
