@@ -23,8 +23,12 @@ case $1 in
         esac
         ;;
     temp)
-        VAL=$(read_ini "$KERNEL_DIR/ryzen_controller/tuning.ini" "Tuning" "TempLimit")
-        [ -n "$VAL" ] && echo "${VAL}°C" || echo "N/A"
+        TEMP=$(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null)
+        if [ -n "$TEMP" ]; then
+            echo "$((TEMP / 1000))°C"
+        else
+            echo "N/A"
+        fi
         ;;
     bat)
         BAT_PATH=$(ls -d /sys/class/power_supply/BAT* 2>/dev/null | head -n 1)

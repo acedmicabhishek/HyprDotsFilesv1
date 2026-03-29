@@ -1,250 +1,175 @@
-/* --- Ace Bar Enhanced Design --- */
+/* --- AceBar Colorful 'Old Meta' Styling --- */
 
 * {
-    font-family: "JetBrainsMono Nerd Font", "Inter", sans-serif;
-    outline: none;
-    font-size: 13px;
-    margin: 0;
-    padding: 0;
+    font-family: "Inter", "Outfit", "JetBrainsMono Nerd Font", sans-serif;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-window {
-    background: transparent;
-}
-
+/* --- Main Bar --- */
 .bar-container {
-    background: rgba(17, 17, 27, 0.8);
-    /* 80% Opacity */
-    padding: 2px 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    opacity: 1;
-}
-
-.bar-container.hidden-bar {
-    opacity: 0;
-    margin-top: -40px;
-    /* Slide out of view for good measure */
+    background: rgba(17, 17, 27, 0.85);
+    margin: 5px 10px;
+    padding: 2px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .island {
-    background: transparent;
-    /* Container handles opacity now */
+    background: rgba(255, 255, 255, 0.05);
     padding: 4px 12px;
-    margin: 2px;
-    min-height: 24px;
-}
-
-/* --- Left: Workspaces --- */
-.left {
-    padding: 0 6px;
+    border-radius: 10px;
+    margin: 2px 4px;
 }
 
 .ws-btn {
     background: transparent;
+    color: #cdd6f4;
     border: none;
-    color: #585b70;
-    font-weight: 800;
-    margin: 2px 3px;
-    min-height: 16px;
-    min-width: 16px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    min-width: 28px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 .ws-btn.active {
-    background: #cba6f7;
-    color: #11111b;
-    min-width: 24px;
-    border-radius: 6px;
-}
-
-.ws-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
     color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* --- Center: Clock --- */
-.center {
-    color: #ffffff;
-    font-weight: 800;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .window-title {
-    color: #cba6f7;
-    /* Mauve */
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.media-text {
-    color: #94e2d5;
-    /* Teal */
-    font-size: 12px;
-    font-weight: 500;
-    margin-right: 20px;
-}
-
-/* --- Right: Modules --- */
-.mod-net {
     color: #89b4fa;
-    margin-left: 10px;
+    font-weight: 800;
+    font-size: 13px;
 }
 
-/* Blue */
-.mod-power {
-    color: #fab387;
-    margin-left: 10px;
-    font-weight: bold;
-}
-
-/* Peach */
-.mod-gpu {
-    color: #a6e3a1;
-    margin-left: 10px;
-}
-
-/* Green */
-.mod-vol {
-    color: #f9e2af;
-    margin-left: 10px;
-}
-
-/* Yellow */
-.mod-bright {
-    color: #f9e2af;
-    margin-left: 10px;
-}
-
-/* Yellow */
-.mod-cpu {
-    color: #74c7ec;
-    margin-left: 10px;
-}
-
-/* Sapphire */
-.mod-mem {
-    color: #cba6f7;
-    margin-left: 10px;
-}
-
-/* Mauve */
-.mod-temp {
-    color: #f38ba8;
-    margin-left: 10px;
-}
-
-/* Red */
-.mod-bat {
-    color: #a6e3a1;
-    margin-left: 10px;
-}
-
-/* Green */
-
-.mod-gpu:hover,
-.mod-vol:hover,
-.mod-power:hover,
-.mod-bright:hover,
-.media-text:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-}
-
-/* --- Drawers --- */
-
-.drawer-window {
-    background: rgba(17, 17, 27, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
+/* --- Drawers (Premium Glass Refinement) --- */
 .drawer-container {
-    padding: 20px;
-    min-width: 250px;
+    padding: 22px;
+    border-radius: 30px;
+    /* Soft Inner Glow instead of Black Shadow */
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(24px) saturate(1.8);
 }
 
-.drawer-big-clock {
-    font-size: 48px;
+/* Unified Drawer Base */
+.drawer-center,
+.drawer-right,
+.drawer-left {
+    border-top: none;
+    /* Discarded the specific top edge for a cleaner look */
+}
+
+/* Enhanced Color Glows (Ultra Transparent) */
+.drawer-center {
+    background: linear-gradient(135deg, rgba(203, 166, 247, 0.22), rgba(137, 180, 250, 0.22));
+}
+
+.drawer-right {
+    background: linear-gradient(135deg, rgba(148, 226, 213, 0.22), rgba(166, 227, 161, 0.22));
+}
+
+.drawer-left {
+    background: linear-gradient(135deg, rgba(250, 179, 135, 0.22), rgba(235, 160, 172, 0.22));
+}
+
+/* --- High-Tech Processor Load UI --- */
+.drawer-section-title {
+    font-size: 10px;
     font-weight: 900;
-    color: #cba6f7;
-    /* Mauve */
-    margin-bottom: -5px;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-.drawer-date {
-    font-size: 16px;
-    color: #94e2d5;
-    /* Teal */
-    font-weight: 600;
-    margin-bottom: 15px;
+.drawer-cpu-bar {
+    margin-bottom: 6px;
 }
 
+.drawer-cpu-bar trough {
+    min-height: 4px;
+    /* Ultra Thin */
+    background: rgba(255, 255, 255, 0.08);
+    /* Barely visible trough */
+    border-radius: 10px;
+    border: none;
+}
+
+.drawer-cpu-bar progress>bar {
+    background: #cba6f7;
+    /* Vibrant CPU color */
+    border-radius: 10px;
+    min-height: 4px;
+    box-shadow: 0 0 12px rgba(203, 166, 247, 0.6);
+    /* Neon Glow */
+}
+
+/* Memory Bar also enhanced */
+.drawer-ram-bar trough {
+    min-height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.drawer-ram-bar progress>bar {
+    background: #89b4fa;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(137, 180, 250, 0.6);
+}
+
+/* Typography Refresh (High Contrast) */
+.drawer-big-clock {
+    font-size: 52px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -1px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.drawer-date,
 .drawer-weather {
     font-size: 15px;
-    color: #f9e2af;
-    /* Yellow */
-    margin-bottom: 5px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .drawer-title-large {
-    font-size: 14px;
-    color: #89b4fa;
-    /* Blue */
-    font-weight: 500;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 10px;
-    margin-top: 10px;
-}
-
-.drawer-section-title {
-    font-size: 11px;
-    color: #585b70;
-    font-weight: 800;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
+    font-size: 13px;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 10px 16px;
+    border-radius: 12px;
+    margin-top: 15px;
 }
 
 .drawer-stat-detail {
     font-size: 12px;
-    color: #a6e3a1;
-    /* Green */
-    font-weight: bold;
-    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    margin-top: 4px;
 }
 
-progressbar trough {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
-    min-height: 8px;
+/* Workspace Previews Refresh */
+.workspace-preview-item {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 12px;
+    border-radius: 15px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.drawer-cpu-bar progress {
-    background: linear-gradient(to right, #89b4fa, #cba6f7);
-    border-radius: 4px;
+.ws-preview-header {
+    font-size: 10px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
 }
 
-.drawer-ram-bar progress {
-    background: linear-gradient(to right, #a6e3a1, #94e2d5);
-    border-radius: 4px;
-}
-
-@keyframes pulse {
-    0% {
-        opacity: 0.8;
-    }
-
-    50% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0.8;
-    }
-}
-
-.drawer-big-clock {
-    animation: pulse 4s infinite ease-in-out;
+.ws-preview-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
 }
