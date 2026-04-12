@@ -7,40 +7,73 @@
 
 /* --- Main Bar --- */
 .bar-container {
-    background: rgba(17, 17, 27, 0.85);
+    background: linear-gradient(135deg, rgba(44, 42, 65, 0.72), rgba(20, 21, 38, 0.7));
     margin: 5px 10px;
-    padding: 2px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 8px 14px;
+    border-radius: 26px;
+    border: 1px solid rgba(103, 80, 238, 0.25);
+    box-shadow: 0 24px 55px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(28px) saturate(1.3);
+    -webkit-backdrop-filter: blur(28px) saturate(1.3);
 }
 
-.island {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 4px 12px;
-    border-radius: 10px;
+.island,
+.workspace-island {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 4px 10px;
+    border-radius: 16px;
     margin: 2px 4px;
+    border: 1px solid rgba(116, 101, 255, 0.18);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .ws-btn {
-    background: transparent;
-    color: #cdd6f4;
-    border: none;
-    min-width: 28px;
-    font-weight: bold;
-    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    color: #d8def8;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    min-width: 24px;
+    padding: 5px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 12px;
     cursor: pointer;
+    transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+}
+
+.ws-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px);
 }
 
 .ws-btn.active {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(111, 66, 255, 0.25);
     color: #ffffff;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    border-color: rgba(111, 66, 255, 0.4);
+    box-shadow: 0 0 18px rgba(111, 66, 255, 0.16);
 }
 
+.mod-net { color: #7dd3fc; }
+.mod-wifi { color: #34d399; }
+.mod-gpu { color: #c084fc; }
+.mod-power { color: #fb923c; }
+.mod-vol { color: #f9a8d4; }
+.mod-cpu { color: #facc15; }
+.mod-mem { color: #60a5fa; }
+.mod-temp { color: #f87171; }
+.mod-bat { color: #a3e635; }
+
+.stat-muted { color: #94a3b8; }
+.stat-good { color: #4ade80; }
+.stat-moderate { color: #facc15; }
+.stat-warn { color: #fb923c; }
+.stat-hot { color: #f97316; }
+.stat-critical { color: #ef4444; }
+
 .window-title {
-    color: #89b4fa;
+    color: #a5c5ff;
     font-weight: 800;
     font-size: 13px;
+    letter-spacing: 0.6px;
 }
 
 /* --- Drawers (Premium Glass Refinement) --- */
@@ -63,15 +96,15 @@
 
 /* Enhanced Color Glows (Ultra Transparent) */
 .drawer-center {
-    background: linear-gradient(135deg, rgba(203, 166, 247, 0.22), rgba(137, 180, 250, 0.22));
+    background: linear-gradient(135deg, rgba(203, 166, 247, 0.12), rgba(137, 180, 250, 0.12));
 }
 
 .drawer-right {
-    background: linear-gradient(135deg, rgba(148, 226, 213, 0.22), rgba(166, 227, 161, 0.22));
+    background: linear-gradient(135deg, rgba(148, 226, 213, 0.12), rgba(166, 227, 161, 0.12));
 }
 
 .drawer-left {
-    background: linear-gradient(135deg, rgba(250, 179, 135, 0.22), rgba(235, 160, 172, 0.22));
+    background: linear-gradient(135deg, rgba(250, 179, 135, 0.12), rgba(235, 160, 172, 0.12));
 }
 
 /* --- High-Tech Processor Load UI --- */
@@ -118,6 +151,30 @@
     background: #89b4fa;
     border-radius: 10px;
     box-shadow: 0 0 12px rgba(137, 180, 250, 0.6);
+}
+
+.drawer-vol-bar trough,
+.drawer-bat-bar trough {
+    min-height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.drawer-vol-bar progress>bar {
+    background: linear-gradient(90deg, #38bdf8, #8b5cf6);
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+}
+
+.drawer-bat-bar progress>bar {
+    background: linear-gradient(90deg, #22c55e, #84cc16);
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.35);
+}
+
+.drawer-status-group {
+    gap: 10px;
+    margin-top: 10px;
 }
 
 /* Typography Refresh (High Contrast) */

@@ -32,3 +32,15 @@ void safe_set_label(GtkWidget* widget, const std::string& text) {
         }
     } catch (...) {}
 }
+
+void set_widget_stat_class(GtkWidget* widget, const std::string& cls) {
+    if (!widget) return;
+    GtkStyleContext *ctx = gtk_widget_get_style_context(widget);
+    const char *classes[] = {"stat-muted", "stat-good", "stat-moderate", "stat-warn", "stat-hot", "stat-critical"};
+    for (auto name : classes) {
+        gtk_style_context_remove_class(ctx, name);
+    }
+    if (!cls.empty()) {
+        gtk_style_context_add_class(ctx, cls.c_str());
+    }
+}

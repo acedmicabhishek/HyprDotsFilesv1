@@ -41,8 +41,8 @@ void setup_ui(GtkApplication *app) {
   gtk_widget_add_css_class(mb, "bar-container");
   gtk_window_set_child(GTK_WINDOW(App.win), mb);
 
-  GtkWidget *wsb = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
-  gtk_widget_add_css_class(wsb, "island");
+  GtkWidget *wsb = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 2);
+  gtk_widget_add_css_class(wsb, "workspace-island");
   gtk_center_box_set_start_widget(GTK_CENTER_BOX(mb), wsb);
   for (int i = 1; i <= 10; ++i) {
     char l[4];
@@ -69,9 +69,9 @@ void setup_ui(GtkApplication *app) {
   GtkWidget *rb = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
   gtk_widget_add_css_class(rb, "island");
   gtk_center_box_set_end_widget(GTK_CENTER_BOX(mb), rb);
-  const char *mods[] = {"net", "gpu", "power", "vol", "cpu", "mem", "temp", "bat"};
+  const char *mods[] = {"net", "wifi", "gpu", "power", "vol", "cpu", "mem", "temp", "bat"};
   for (auto m : mods) {
-    if (strcmp(m, "gpu") == 0 || strcmp(m, "power") == 0) {
+    if (strcmp(m, "gpu") == 0 || strcmp(m, "power") == 0 || strcmp(m, "wifi") == 0) {
         App.modules[m] = gtk_button_new_with_label("...");
         gtk_widget_add_css_class(App.modules[m], "ws-btn");
         
@@ -83,6 +83,9 @@ void setup_ui(GtkApplication *app) {
             } else if (mod == "power") {
                 safe_set_label(App.modules["power"], "󰈐 Wait...");
                 system("~/.config/hypr/scripts/aac_cycle.sh power > /dev/null 2>&1 &");
+            } else if (mod == "wifi") {
+                safe_set_label(App.modules["wifi"], "󰤭 toggling...");
+                system("sh -c 'if [ \"$(nmcli -t -f WIFI g 2>/dev/null)\" = \"enabled\" ]; then nmcli radio wifi off >/dev/null 2>&1; else nmcli radio wifi on >/dev/null 2>&1; fi' &");
             }
         }), strdup(m));
     } else {
@@ -94,9 +97,6 @@ void setup_ui(GtkApplication *app) {
     gtk_widget_add_css_class(App.modules[m], cls);
     gtk_box_append(GTK_BOX(rb), App.modules[m]);
   }
-  App.clock_label = gtk_label_new("...");
-  gtk_widget_add_css_class(App.clock_label, "mod-clock");
-  gtk_box_append(GTK_BOX(rb), App.clock_label);
 
   App.drawer_center = gtk_application_window_new(app);
   setup_layer(GTK_WINDOW(App.drawer_center), false, "center");
@@ -118,6 +118,27 @@ void setup_ui(GtkApplication *app) {
   gtk_label_set_ellipsize(GTK_LABEL(App.active_win_drawer), PANGO_ELLIPSIZE_END);
   gtk_label_set_max_width_chars(GTK_LABEL(App.active_win_drawer), 30);
   gtk_box_append(GTK_BOX(dc_box), App.active_win_drawer);
+
+  GtkWidget *status_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 8);
+  gtk_widget_add_css_class(status_box, "drawer-status-group");
+
+  App.volume_label = gtk_label_new("Volume 0%");
+  gtk_widget_add_css_class(App.volume_label, "drawer-stat-detail");
+  gtk_box_append(GTK_BOX(status_box), App.volume_label);
+  App.volume_bar = gtk_progress_bar_new();
+  gtk_widget_add_css_class(App.volume_bar, "drawer-vol-bar");
+  gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(App.volume_bar), TRUE);
+  gtk_box_append(GTK_BOX(status_box), App.volume_bar);
+
+  App.battery_label = gtk_label_new("Battery 0%");
+  gtk_widget_add_css_class(App.battery_label, "drawer-stat-detail");
+  gtk_box_append(GTK_BOX(status_box), App.battery_label);
+  App.battery_bar = gtk_progress_bar_new();
+  gtk_widget_add_css_class(App.battery_bar, "drawer-bat-bar");
+  gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(App.battery_bar), TRUE);
+  gtk_box_append(GTK_BOX(status_box), App.battery_bar);
+
+  gtk_box_append(GTK_BOX(dc_box), status_box);
 
   GtkCssProvider *provider = gtk_css_provider_new();
   gtk_css_provider_load_from_path(provider, CSS_FILE);

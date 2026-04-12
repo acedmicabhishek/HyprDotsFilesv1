@@ -2,4 +2,12 @@
 #include <gtk/gtk.h>
 
 void update_system();
-gboolean update_clock(gpointer data);
+void update_volume();
+void update_time();
+void update_net();
+void update_wifi();
+void update_volume();
+void update_time();
+void update_net();
+void update_volume();
+void update_time();

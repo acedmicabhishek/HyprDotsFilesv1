@@ -7,8 +7,8 @@
     "spacing": 5,
 
     "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["custom/asus", "custom/temp", "custom/bat", "memory", "cpu"],
+    "modules-center": [],
+    "modules-right": ["custom/asus", "custom/temp", "custom/bat", "memory", "cpu", "custom/wifi"],
 
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -47,5 +47,12 @@
 
     "cpu": {
         "format": "󰻠 {usage}%"
+    },
+
+    "custom/wifi": {
+        "format": "{}",
+        "interval": 2,
+        "exec": "~/.config/hypr/scripts/wifi_status.sh",
+        "on-click": "~/.config/hypr/scripts/wifi_toggle.sh"
     }
 }

@@ -4,3 +4,4 @@
 
 std::string exec(const char *cmd);
 void safe_set_label(GtkWidget* label, const std::string& text);
+void set_widget_stat_class(GtkWidget* widget, const std::string& cls);

@@ -3,8 +3,20 @@ WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 TRANSITION_TYPE="random"
 INTERVAL=1800
 
-if ! pgrep -x "swww-daemon" > /dev/null; then
+WALLPAPER_BACKEND=""
+if command -v swww >/dev/null 2>&1; then
+    WALLPAPER_BACKEND="swww"
+elif command -v awww >/dev/null 2>&1; then
+    WALLPAPER_BACKEND="awww"
+fi
+
+if [ "$WALLPAPER_BACKEND" = "swww" ] && ! pgrep -x "swww-daemon" > /dev/null; then
     swww-daemon & disown
+    sleep 0.5
+fi
+
+if [ "$WALLPAPER_BACKEND" = "awww" ] && ! pgrep -x "awww-daemon" > /dev/null; then
+    awww-daemon & disown
     sleep 0.5
 fi
 
@@ -12,7 +24,14 @@ while true; do
     WALLPAPER=$(find "$WALLPAPER_DIR" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.webp" \) | shuf -n 1)
     
     if [ -n "$WALLPAPER" ]; then
-        swww img "$WALLPAPER" --transition-type "$TRANSITION_TYPE"
+        if [ "$WALLPAPER_BACKEND" = "swww" ]; then
+            swww img "$WALLPAPER" --transition-type "$TRANSITION_TYPE"
+        elif [ "$WALLPAPER_BACKEND" = "awww" ]; then
+            awww img "$WALLPAPER"
+        else
+            echo "No supported wallpaper backend (swww/awww) found." >&2
+            exit 1
+        fi
         
         # --- Color Sync Logic (Synced with wallpaper_random.sh) ---
         SELECTED_WALL="$WALLPAPER"
@@ -57,6 +76,7 @@ while true; do
         
             hyprctl reload
         fi
+    fi
     
     sleep $INTERVAL
 done

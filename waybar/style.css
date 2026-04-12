@@ -10,15 +10,16 @@
 
 window#waybar {
     background: transparent;
+    background-color: transparent;
+    box-shadow: none;
 }
 
 /* The Main Bar Container - Seamless Floating */
 .modules-left, .modules-center, .modules-right {
-    background: rgba(17, 17, 27, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin: 4px 8px; /* Closer to the edges */
-    padding: 2px 8px;
-    border-radius: 12px;
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
 }
 
 /* --- Left: Workspaces --- */
@@ -45,7 +46,7 @@ window#waybar {
 }
 
 /* --- Right: Hardware & Stats --- */
-#custom-asus, #custom-temp, #custom-bat, #memory, #cpu {
+#custom-asus, #custom-temp, #custom-bat, #memory, #cpu, #custom-wifi {
     padding: 0 10px;
     margin: 2px;
     border-radius: 8px;
@@ -58,8 +59,9 @@ window#waybar {
 #custom-bat  { color: #a6e3a1; }
 #memory      { color: #89b4fa; }
 #cpu         { color: #fab387; }
+#custom-wifi { color: #8bd5ca; }
 
 /* Subtle Hover */
-#custom-asus:hover, #custom-temp:hover, #custom-bat:hover, #memory:hover, #cpu:hover {
+#custom-asus:hover, #custom-temp:hover, #custom-bat:hover, #memory:hover, #cpu:hover, #custom-wifi:hover {
     background: rgba(255, 255, 255, 0.15);
 }

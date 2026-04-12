@@ -17,8 +17,11 @@ struct AppState {
   std::map<int, GtkWidget *> ws_buttons;
   std::map<std::string, GtkWidget *> modules;
   GtkWidget *win, *drawer_center;
-  GtkWidget *big_clock, *big_date, *weather_label, *active_win_drawer;
-  GtkWidget *title_label, *clock_label, *media_label;
+  GtkWidget *big_clock, *big_date;
+  GtkWidget *weather_label, *active_win_drawer;
+  GtkWidget *volume_label, *battery_label;
+  GtkWidget *volume_bar, *battery_bar;
+  GtkWidget *title_label, *media_label;
   std::vector<std::vector<long>> last_cpu_times;
 };
 

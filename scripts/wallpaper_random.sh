@@ -3,7 +3,16 @@ WALL_DIR="$HOME/Pictures/Wallpapers"
 INDEX_FILE="$HOME/.cache/.wallpaper_index"
 LOG_FILE="$HOME/.cache/wallpaper_log.txt"
 
+WALLPAPER_BACKEND=""
+if command -v swww >/dev/null 2>&1; then
+    WALLPAPER_BACKEND="swww"
+elif command -v awww >/dev/null 2>&1; then
+    WALLPAPER_BACKEND="awww"
+fi
+
 echo "--- Script started at $(date) ---" >> "$LOG_FILE"
+
+echo "Detected wallpaper backend: $WALLPAPER_BACKEND" >> "$LOG_FILE"
 
 mapfile -t WALLPAPERS < <(find "$WALL_DIR" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.webp" \) | sort)
 
@@ -19,7 +28,19 @@ echo "$NEXT_INDEX" > "$INDEX_FILE"
 
 echo "Selected Wallpaper: $SELECTED_WALL" >> "$LOG_FILE"
 
-swww img "$SELECTED_WALL" --transition-type wave --transition-fps 144 --transition-step 90
+if [ "$WALLPAPER_BACKEND" = "swww" ]; then
+    swww img "$SELECTED_WALL" --transition-type wave --transition-fps 144 --transition-step 90
+elif [ "$WALLPAPER_BACKEND" = "awww" ]; then
+    if ! pgrep -x "awww-daemon" >/dev/null 2>&1; then
+        awww-daemon & disown
+        sleep 0.5
+    fi
+    awww img "$SELECTED_WALL"
+else
+    echo "No supported wallpaper backend (swww/awww) found." >> "$LOG_FILE"
+    notify-send "Wallpaper failed" "No supported wallpaper backend installed. Install swww or awww." >/dev/null 2>&1 || true
+    exit 1
+fi
 
 # --- Color Sync Logic ---
 # Extract dominant color using ImageMagick
@@ -71,8 +92,8 @@ if command -v magick &> /dev/null; then
 
     hyprctl reload
     
-    notify-send "Wallpaper & Colors Updated" "Accent: #$HEX_COLOR"
+    notify-send "Wallpaper & Colors Updated" "Accent: #$HEX_COLOR" >/dev/null 2>&1 || true
 else
     echo "ImageMagick (magick) not found!" >> "$LOG_FILE"
-    notify-send "Error" "ImageMagick not found. Colors not synced."
+    notify-send "Error" "ImageMagick not found. Colors not synced." >/dev/null 2>&1 || true
 fi

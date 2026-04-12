@@ -31,6 +31,10 @@ void update_stats() {
             char buf[32];
             snprintf(buf, sizeof(buf), "󰍛 %.1f%%", usage * 100);
             safe_set_label(App.modules["cpu"], buf);
+            if (App.modules["cpu"]) {
+              const char *cls = usage < 0.50f ? "stat-good" : usage < 0.70f ? "stat-moderate" : usage < 0.85f ? "stat-warn" : "stat-hot";
+              set_widget_stat_class(App.modules["cpu"], cls);
+            }
           }
         }
       }
@@ -46,11 +50,15 @@ void update_stats() {
     }
     if (total_kb > 0) {
         long used_kb = total_kb - avail_kb;
+        float used_pct = (float)used_kb / total_kb;
         float used_gb = (float)used_kb / 1024 / 1024;
-        float tot_gb = (float)total_kb / 1024 / 1024;
         char buf[64];
         snprintf(buf, sizeof(buf), "󰘚 %.1fG", used_gb);
         safe_set_label(App.modules["mem"], buf);
+        if (App.modules["mem"]) {
+          const char *cls = used_pct < 0.50f ? "stat-good" : used_pct < 0.70f ? "stat-moderate" : used_pct < 0.85f ? "stat-warn" : "stat-hot";
+          set_widget_stat_class(App.modules["mem"], cls);
+        }
     }
   } catch (...) {}
 }

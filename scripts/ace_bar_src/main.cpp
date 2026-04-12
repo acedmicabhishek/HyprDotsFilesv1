@@ -13,7 +13,10 @@
 AppState App;
 
 static gboolean on_timer_1s(gpointer data) {
-    update_clock(data);
+    update_time();
+    update_volume();
+    update_net();
+    update_wifi();
     return TRUE;
 }
 
